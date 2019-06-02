@@ -1,0 +1,24 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+  <span fxFlex="auto">Mini Trello</span>
+  <mat-form-field floatLabel="never">
+    <input (keydown.enter)="addList()" [(ngModel)]="listLabel" matInput placeholder="add list" type="text" >
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="addList()">Add list</button>
+</mat-toolbar>
+<mat-progress-bar *ngIf="loading.isLoading$ | async" color="accent" mode="indeterminate"></mat-progress-bar>
+<div class="p-15" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="15px">
+  <mat-card *ngFor="let list of lists;let listIndex = index">
+    <mat-card-header appDrag (transfer)="transferItem($event)" [listIndex]="listIndex" fxLayoutAlign="center center">{{ list.label }}</mat-card-header>
+    <mat-card-content>
+      <ul>
+        <li (switch)="switchItem($event)" appDrag [listIndex]="listIndex" [itemIndex]="itemIndex" [class.odd]="odd" *ngFor="let item of list.items;let odd = odd;let itemIndex = index;">{{ item.content }}</li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions  fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+      <mat-form-field floatLabel="never">
+        <input (keydown.enter)="addItem(list)" [(ngModel)]="itemContent" matInput placeholder="add item" type="text" >
+      </mat-form-field>
+      <button mat-raised-button color="accent" (click)="addItem(list)">Add list</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
