@@ -1,28 +1,25 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 
-const lists =  [
+const lists = [
   {
-    label: 'to do',
+    label: "to do",
     items: [
-      { content: 'create list' },
-      { content: 'test item' },
-      { content: 'improve ui' }
-    ]
+      { content: "create list" },
+      { content: "test item" },
+      { content: "improve ui" },
+    ],
   },
   {
-    label: 'done',
-    items: [
-      { content: 'complain to the boss'},
-      { content: 'redo ux' }
-    ]
-  }
+    label: "done",
+    items: [{ content: "complain to the boss" }, { content: "redo ux" }],
+  },
 ];
 
-app.get('/api/lists', (req, res) => {
+app.get("/api/lists", (req, res) => {
   setTimeout(() => {
-    res.status(400).json(lists);
+    res.status(200).json(lists);
   }, 3000);
-})
+});
 
 app.listen(3000);
