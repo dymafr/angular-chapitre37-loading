@@ -1,17 +1,17 @@
-import { ListsService } from "./shared/services/lists.service";
-import { LoadingService } from "./shared/services/loading.service";
-import { List } from "./shared/models";
-import { Component, OnInit } from "@angular/core";
+import { ListsService } from './shared/services/lists.service';
+import { LoadingService } from './shared/services/loading.service';
+import { List } from './shared/models';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  public listLabel = "";
-  public itemContent = "";
-  public lists: List[];
+  public listLabel = '';
+  public itemContent = '';
+  public lists: List[] = [];
 
   constructor(
     public loading: LoadingService,
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
         label: this.listLabel,
         items: [],
       });
-      this.listLabel = "";
+      this.listLabel = '';
     }
   }
 
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
       list.items.push({
         content: this.itemContent,
       });
-      this.itemContent = "";
+      this.itemContent = '';
     }
   }
 
